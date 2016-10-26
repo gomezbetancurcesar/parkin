@@ -62,17 +62,29 @@ public partial class TarjetaAgregar : System.Web.UI.Page
 
             if (tarjeta.guardar(tarjeta) > -1)
             {
-                Response.Write("<script language='javascript'>window.alert('Tarjeta ingresado correctamente.');</script>");
-                Response.Redirect("Tarjetas.aspx");
+                Session["mensaje"] = new Dictionary<string, string>() { 
+                    {"texto", "Tarjeta ingresado correctamente."},
+                    {"clase","alert-success"}
+                };
+                //Response.Write("<script language='javascript'>window.alert('Tarjeta ingresado correctamente.');</script>");
+                Response.Redirect("~/Vistas/Tarjetas/Tarjetas.aspx");
             }
             else
             {
-                Response.Write("<script language='javascript'>window.alert('Error al registrar el Tarjeta.');</script>");
+                Session["mensaje"] = new Dictionary<string, string>() { 
+                    {"texto", "Error al registrar el Tarjeta."},
+                    {"clase","alert-danger"}
+                };
+                //Response.Write("<script language='javascript'>window.alert('Error al registrar el Tarjeta.');</script>");
             }
         }
         else
         {
-            Response.Write("<script language='javascript'>window.alert('Error al registrar el Tarjeta.');</script>");
+            Session["mensaje"] = new Dictionary<string, string>() { 
+                {"texto", "Error al registrar el Tarjeta."},
+                {"clase","alert-danger"}
+            };
+            //Response.Write("<script language='javascript'>window.alert('Error al registrar el Tarjeta.');</script>");
         }
     }
 }

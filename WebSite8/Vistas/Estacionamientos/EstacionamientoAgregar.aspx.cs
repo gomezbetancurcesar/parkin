@@ -30,12 +30,20 @@ public partial class EstacionamientoAgregar : System.Web.UI.Page
 
         if (estacionamiento.guardar(estacionamiento) > 0)
         {
-            Response.Write("<script language='javascript'>window.alert('Estacionamiento ingresado correctamente.');</script>");
-            Response.Redirect("Estacionamientos.aspx");
+            Session["mensaje"] = new Dictionary<string, string>() { 
+                {"texto", "Estacionamiento ingresado correctamente."},
+                {"clase","alert-success"}
+            };
+            //Response.Write("<script language='javascript'>window.alert('Estacionamiento ingresado correctamente.');</script>");
+            Response.Redirect("~/Vistas/Estacionamientos/Estacionamientos.aspx");
         }
         else
         {
-            Response.Write("<script language='javascript'>window.alert('Error al registrar el estacionamiento.');</script>");
+            Session["mensaje"] = new Dictionary<string, string>() { 
+                {"texto", "Error al registrar el estacionamiento."},
+                {"clase","alert-danger"}
+            };
+            //Response.Write("<script language='javascript'>window.alert('Error al registrar el estacionamiento.');</script>");
         }
     }
 }

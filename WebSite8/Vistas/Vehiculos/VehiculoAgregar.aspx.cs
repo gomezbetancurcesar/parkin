@@ -39,12 +39,20 @@ public partial class VehiculoAgregar : System.Web.UI.Page
 
         if (vehiculo.guardar(vehiculo) > 0)
         {
-            Response.Write("<script language='javascript'>window.alert('Vehiculo ingresado correctamente.');</script>");
-            Response.Redirect("Vehiculos.aspx");
+            Session["mensaje"] = new Dictionary<string, string>() { 
+                {"texto", "Vehiculo registrado correctamente."},
+                {"clase","alert-success"}
+            };
+            //Response.Write("<script language='javascript'>window.alert('Vehiculo ingresado correctamente.');</script>");
+            Response.Redirect("~/Vistas/Vehiculos/Vehiculos.aspx");
         }
         else
         {
-            Response.Write("<script language='javascript'>window.alert('Error al registrar el vehiculo.');</script>");
+            Session["mensaje"] = new Dictionary<string, string>() { 
+                {"texto", "Error al registrar el Vehiculo."},
+                {"clase","alert-danger"}
+            };
+            //Response.Write("<script language='javascript'>window.alert('Error al registrar el vehiculo.');</script>");
         }
     }
 }

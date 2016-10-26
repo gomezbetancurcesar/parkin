@@ -93,12 +93,20 @@ public partial class EstacionamientoCambiarEstado : System.Web.UI.Page
 
         if (estacionamiento.actualizar(estacionamiento))
         {
-            ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Estado actualizado correctamente');", true);
-            Response.Redirect("Estacionamientos.aspx");
+            Session["mensaje"] = new Dictionary<string, string>() { 
+                {"texto", "Estado actualizado correctamente."},
+                {"clase","alert-success"}
+            };
+            //ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Estado actualizado correctamente');", true);
+            Response.Redirect("~/Vistas/Estacionamientos/Estacionamientos.aspx");
         }
         else
         {
-            ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Error al actualizar el estado, intente nuevamente');", true);
+            Session["mensaje"] = new Dictionary<string, string>() { 
+                {"texto", "Error al actualizar el estado, intente nuevamente."},
+                {"clase","alert-danger"}
+            };
+            //ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Error al actualizar el estado, intente nuevamente');", true);
         }
     }
 }

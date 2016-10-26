@@ -13,8 +13,6 @@ public partial class RegistroUsuario : System.Web.UI.Page
         if (!IsPostBack)
         {
             llenarRegiones();
-            //llenarProvincias();
-            //llenarComunas();
         }
     }
 
@@ -89,12 +87,20 @@ public partial class RegistroUsuario : System.Web.UI.Page
 
             if (usuario.guardar(usuario) > 0)
             {
-                Response.Write("<script language='javascript'>window.alert('Usuario registrado correctamente.');</script>");
+                Session["mensaje"] = new Dictionary<string, string>() { 
+                    {"texto", "Usuario registrado correctamente."},
+                    {"clase","alert-success"}
+                };
+                //Response.Write("<script language='javascript'>window.alert('Usuario registrado correctamente.');</script>");
                 Response.Redirect("Default.aspx");
             }
             else
             {
-                Response.Write("<script language='javascript'>window.alert('Error al registrar el usuario.');</script>");
+                Session["mensaje"] = new Dictionary<string, string>() { 
+                    {"texto", "Error al registrar el usuario."},
+                    {"clase","alert-danger"}
+                };
+                //Response.Write("<script language='javascript'>window.alert('Error al registrar el usuario.');</script>");
             }
         }
 
