@@ -135,8 +135,8 @@ namespace CapaDatos
             if (!estacionamiento.valor_hora.Equals(0)) { query += ",VALOR_HORA = " + estacionamiento.valor_hora; }
             if (!estacionamiento.capacidad.Equals(0)) { query += ",CAPACIDAD = " + estacionamiento.capacidad; }
             if (!estacionamiento.existencias.Equals(0)) { query += ",EXISTENCIAS = " + estacionamiento.existencias; }
-            if (estacionamiento.inicio_disponibilidad != default(DateTime)) { query += ",INICIO_DISPONIBILIDAD = to_date('" + estacionamiento.inicio_disponibilidad.Date.ToString("yyyy-MM-dd H:mm:ss") + "', 'YYYY-MM-DD HH24:MI:SS')"; }
-            if (estacionamiento.fin_disponibilidad != default(DateTime)) { query += ",FIN_DISPONIBILIDAD = to_date('" + estacionamiento.fin_disponibilidad.Date.ToString("yyyy-MM-dd H:mm:ss") + "', 'YYYY-MM-DD HH24:MI:SS')"; }
+            if (estacionamiento.inicio_disponibilidad != default(DateTime)) { query += ",INICIO_DISPONIBILIDAD = to_date('" + estacionamiento.inicio_disponibilidad.ToString("yyyy-MM-dd H:mm:ss") + "', 'YYYY-MM-DD HH24:MI:SS')"; }
+            if (estacionamiento.fin_disponibilidad != default(DateTime)) { query += ",FIN_DISPONIBILIDAD = to_date('" + estacionamiento.fin_disponibilidad.ToString("yyyy-MM-dd H:mm:ss") + "', 'YYYY-MM-DD HH24:MI:SS')"; }
 
             query += " where COD_ESTACIONAMIENTO = " + estacionamiento.cod_estacionamiento;
 
@@ -146,6 +146,37 @@ namespace CapaDatos
                 guarda = true;
             }
             return guarda;
+        }
+
+        public List<Estacionamiento> estacionamientosDisponibles(int codUsuario, Boolean llenaCombo = false)
+        {
+            List<Estacionamiento> estacionamientos = new List<Estacionamiento>();
+            Conexion conexion = new Conexion();
+            string query = "select * from ESTACIONAMIENTOS";
+
+            OracleDataReader dr = conexion.consultar(query);
+            while(dr.Read()){
+                Estacionamiento estacionamiento = new Estacionamiento();
+                estacionamiento.cod_estacionamiento = int.Parse(dr["cod_estacionamiento"].ToString());
+                estacionamiento.direccion = dr["direccion"].ToString();
+                estacionamiento.valor_hora = int.Parse(dr["valor_hora"].ToString()); ;
+                estacionamiento.coordenadas = dr["coordenadas"].ToString();
+                estacionamiento.inicio_disponibilidad = new DateTime();
+                estacionamiento.fin_disponibilidad = new DateTime();
+                estacionamiento.capacidad = int.Parse(dr["capacidad"].ToString());
+                estacionamiento.existencias = int.Parse(dr["existencias"].ToString());
+                estacionamiento.cod_usuario = int.Parse(dr["cod_usuario"].ToString());
+                estacionamiento.cod_estacionamiento_estado = int.Parse(dr["cod_estacionamiento_estado"].ToString());
+
+                estacionamientos.Add(estacionamiento);
+            }
+            conexion.cerrarConexion();
+
+            if (llenaCombo)
+            {
+                estacionamientos.Insert(0, new Estacionamiento { cod_estacionamiento = 0, direccion = "Seleccione"});
+            }
+            return estacionamientos;
         }
     }
 }

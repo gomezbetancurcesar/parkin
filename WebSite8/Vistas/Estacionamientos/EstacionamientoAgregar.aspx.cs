@@ -10,7 +10,9 @@ public partial class EstacionamientoAgregar : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if (Session["usuario"] == null){
+            Response.Redirect("~/Vistas/Usuarios/Login.aspx");
+        }
     }
 
     protected void Button1_Click(object sender, EventArgs e)

@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="EstacionamientoAgregar.aspx.cs" Inherits="EstacionamientoAgregar" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-     <link rel="stylesheet" href="css/google_maps.css"/>
+    <link rel="stylesheet" href="/css/google_maps.css"/>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDC3mh16ySlzaS1hVXfzyrRE33l3UbcqfU&callback=initMap" async defer></script>
 
        <script>

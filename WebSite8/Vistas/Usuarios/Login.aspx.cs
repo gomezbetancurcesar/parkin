@@ -21,12 +21,16 @@ public partial class _Default : System.Web.UI.Page
         if (usuario.cod_usuario > 0)
         {
             Session["usuario"] = usuario;
-            Response.Redirect("Default.aspx");
+            Response.Redirect("~/Default.aspx");
         }
         else {
-            Response.Write("<script language='javascript'>window.alert('Usuario y/o contraseña erróneos');</script>");
-            txtUsuario.Text = "";
-            txtPassword.Text = "";
+            Session["mensaje"] = new Dictionary<string, string>() { 
+                {"texto", "<strong>Atención!</strong> Usuario y/o contraseña erróneos"},
+                {"clase","alert-danger"}
+            };
+            //ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Usuario y/o contraseña erróneos');", true);
+            //txtUsuario.Text = "";
+            //txtPassword.Text = "";
         }
     }
 }

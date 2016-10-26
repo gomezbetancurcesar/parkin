@@ -64,5 +64,31 @@ namespace CapaDatos
             conexion.cerrarConexion();
             return vehiculos;
         }
+
+        public List<Vehiculo> buscarVehiculosUsuario(int codUsuario, Boolean llenaCombo = false)
+        {
+            List<Vehiculo> vehiculos = new List<Vehiculo>();
+            Conexion conexion = new Conexion();
+            string query = "select * from VEHICULOS where COD_USUARIO = " + codUsuario;
+
+            OracleDataReader dr = conexion.consultar(query);
+            while(dr.Read()){
+                Vehiculo vehiculo = new Vehiculo();
+                vehiculo.cod_vehiculo = Int32.Parse(dr["cod_vehiculo"].ToString());
+                vehiculo.patente = dr["patente"].ToString();
+                vehiculo.modelo = dr["modelo"].ToString();
+                vehiculo.estado = Int32.Parse(dr["estado"].ToString());
+                vehiculo.cod_usuario = Int32.Parse(dr["cod_usuario"].ToString());
+                vehiculo.cod_vehiculo_marca = Int32.Parse(dr["cod_vehiculo_marca"].ToString());
+                vehiculos.Add(vehiculo);
+            }
+            conexion.cerrarConexion();
+
+            if (llenaCombo)
+            {
+                vehiculos.Insert(0, new Vehiculo { cod_vehiculo = 0, patente = "Seleccione"});
+            }
+            return vehiculos;
+        }
     }
 }

@@ -7,17 +7,17 @@
         <meta charset="utf-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <link href="css/bootstrap.min.css" rel="stylesheet"/>
-        <link href="css/normalize.4.1.1.css" rel="stylesheet"/>
-        <link href="css/estiloGeneral.css" rel="stylesheet"/>
+        <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="/css/normalize.4.1.1.css" rel="stylesheet"/>
+        <link href="/css/estiloGeneral.css" rel="stylesheet"/>
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
           <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
-        <script src="js/jquery.1.12.4.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
+        <script src="/js/jquery.1.12.4.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
         <style type="text/css">
             v\:* {
                 behavior:url(#default#VML);
@@ -34,11 +34,12 @@
                 <header class="row">
                     <div class="row">
                         <div class="col-md-3 logo">
-                            <img alt="Logo" src="images/estacionamiento.jpg" class="logo img-circle"/>
+                            <img alt="Logo" src="/images/estacionamiento.jpg" class="logo img-circle"/>
                         </div>
                         <div align="center" class="titulo_estac">
                             Mi estacionamiento
                         </div>
+                        
                         <%
                             Usuario usuario = new Usuario();
                             if (Session["usuario"] != null)
@@ -46,17 +47,24 @@
                                 usuario = (Usuario)Session["usuario"];
                                 %>
                                     <div class="linksLogeado">
-                                        <asp:HyperLink class="hiperlinks" ID="HyperLink3" runat="server" NavigateUrl="~/Tarjetas.aspx">Tarjetas</asp:HyperLink>
-                                        <asp:HyperLink class="hiperlinks" ID="HyperLink4" runat="server" NavigateUrl="~/Vehiculos.aspx">Vehículos</asp:HyperLink>
-                                        <asp:HyperLink class="hiperlinks" ID="HyperLink5" runat="server" NavigateUrl="~/Estacionamientos.aspx">Estacionamientos</asp:HyperLink>
+                                        <asp:HyperLink class="hiperlinks" ID="HyperLink3" runat="server" NavigateUrl="~/Vistas/Tarjetas/Tarjetas.aspx">Tarjetas</asp:HyperLink>
+                                        <asp:HyperLink class="hiperlinks" ID="HyperLink4" runat="server" NavigateUrl="~/Vistas/Vehiculos/Vehiculos.aspx">Vehículos</asp:HyperLink>
+                                        <asp:HyperLink class="hiperlinks" ID="HyperLink5" runat="server" NavigateUrl="~/Vistas/Estacionamientos/Estacionamientos.aspx">Estacionamientos</asp:HyperLink>
+                                        <asp:HyperLink class="hiperlinks" ID="HyperLink6" runat="server" NavigateUrl="~/Vistas/Arriendos/Arrendar.aspx">Arrendar</asp:HyperLink>
+                                        <asp:HyperLink class="hiperlinks" ID="HyperLink7" runat="server" NavigateUrl="~/Vistas/Usuarios/CerrarSesion.aspx">Cerrar Sesión</asp:HyperLink>
+                                    </div>
+                                <%
+                            }
+                            else
+                            {
+                                %>
+                                    <div  class="hiperlinks">
+                                        <asp:HyperLink class ="hiperlinks" ID="HyperLink2" runat="server" NavigateUrl="~/Vistas/Usuarios/RegistroUsuario.aspx">Registrarse</asp:HyperLink>
+                                        <asp:HyperLink class ="hiperlinks" ID="HyperLink1" runat="server" NavigateUrl="~/Vistas/Usuarios/Login.aspx">Login</asp:HyperLink>
                                     </div>
                                 <%
                             }
                         %>
-                        <div  class="hiperlinks">
-                            <asp:HyperLink class ="hiperlinks" ID="HyperLink2" runat="server" NavigateUrl="~/RegistroUsuario.aspx">Registrarse</asp:HyperLink>
-                            <asp:HyperLink class ="hiperlinks" ID="HyperLink1" runat="server" NavigateUrl="~/Login.aspx">Login</asp:HyperLink>
-                        </div>
                     </div>
                     <%--<div class="navbar navbar-default">
                         <div class="container-fluid">
@@ -68,6 +76,19 @@
                     </div>--%>
                 </header>
                 <div class="row contenido">
+                    <%
+                        if (Session["mensaje"] != null)
+                        {
+                            Dictionary<string, string> mensaje = (Dictionary<string, string>) Session["mensaje"];
+                            %>
+                                <div class="alert fade in <% Response.Write(mensaje["clase"]); %>">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+                                    <% Response.Write(mensaje["texto"]); %>
+                                </div>
+                            <%
+                            Session["mensaje"] = null;
+                        }
+                    %>
                     <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
                 </div>
             </div>

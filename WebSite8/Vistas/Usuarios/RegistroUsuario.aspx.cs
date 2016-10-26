@@ -36,11 +36,13 @@ public partial class RegistroUsuario : System.Web.UI.Page
             dpd_provincia.DataBind();
             lbl_provincia.Visible = true;
             dpd_provincia.Visible = true;
+            divProvincia.Visible = true;
         }
         else
         {
             lbl_provincia.Visible = false;
             dpd_provincia.Visible = false;
+            divProvincia.Visible = false;
         }
         
     }
@@ -55,9 +57,11 @@ public partial class RegistroUsuario : System.Web.UI.Page
             dpd_comuna.DataBind();
             lbl_comuna.Visible = true;
             dpd_comuna.Visible = true;
+            divComuna.Visible = true;
         }else{
             lbl_comuna.Visible = false;
             dpd_comuna.Visible = false;
+            divComuna.Visible = false;
         }
     }
     protected void Button1_Click(object sender, EventArgs e)

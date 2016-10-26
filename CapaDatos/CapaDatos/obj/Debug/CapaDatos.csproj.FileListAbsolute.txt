@@ -7,3 +7,11 @@ C:\Users\equipo-desarrollo-2\Documents\Visual Studio 2013\Projects\CapaDatos\Cap
 C:\Users\equipo-desarrollo-2\Documents\Visual Studio 2013\Projects\CapaDatos\CapaDatos\bin\Debug\CapaDatos.dll.config
 C:\Users\equipo-desarrollo-2\Documents\Visual Studio 2013\Projects\CapaDatos\CapaDatos\bin\Debug\EntityFramework.dll
 C:\Users\equipo-desarrollo-2\Documents\Visual Studio 2013\Projects\CapaDatos\CapaDatos\bin\Debug\EntityFramework.xml
+C:\Users\equipo-desarrollo-2\Documents\Visual Studio 2013\Projects\Parkin\CapaDatos\CapaDatos\bin\Debug\CapaDatos.dll.config
+C:\Users\equipo-desarrollo-2\Documents\Visual Studio 2013\Projects\Parkin\CapaDatos\CapaDatos\bin\Debug\CapaDatos.dll
+C:\Users\equipo-desarrollo-2\Documents\Visual Studio 2013\Projects\Parkin\CapaDatos\CapaDatos\bin\Debug\CapaDatos.pdb
+C:\Users\equipo-desarrollo-2\Documents\Visual Studio 2013\Projects\Parkin\CapaDatos\CapaDatos\bin\Debug\Oracle.DataAccess.dll
+C:\Users\equipo-desarrollo-2\Documents\Visual Studio 2013\Projects\Parkin\CapaDatos\CapaDatos\bin\Debug\EntityFramework.xml
+C:\Users\equipo-desarrollo-2\Documents\Visual Studio 2013\Projects\Parkin\CapaDatos\CapaDatos\obj\Debug\CapaDatos.csprojResolveAssemblyReference.cache
+C:\Users\equipo-desarrollo-2\Documents\Visual Studio 2013\Projects\Parkin\CapaDatos\CapaDatos\obj\Debug\CapaDatos.dll
+C:\Users\equipo-desarrollo-2\Documents\Visual Studio 2013\Projects\Parkin\CapaDatos\CapaDatos\obj\Debug\CapaDatos.pdb

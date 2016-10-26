@@ -142,7 +142,7 @@
             <div class="col-md-6">
             </div>
         </div>
-        <div class="col-md-12 row">
+        <div id="divProvincia" runat="server" visible="false" class="col-md-12 row">
             <div class="col-md-6 form-group">
                 <asp:Label ID="lbl_provincia" runat="server" Text="Provincia" Visible="False"></asp:Label>
                 <asp:DropDownList 
@@ -157,7 +157,7 @@
             <div class="col-md-6">
             </div>
         </div>
-        <div class="col-md-12 row">
+        <div id="divComuna" runat="server" visible="false" class="col-md-12 row">
             <div class="col-md-6 form-group">
                 <asp:Label ID="lbl_comuna" runat="server" Text="Comuna" Visible="False"></asp:Label>
                 <asp:DropDownList 

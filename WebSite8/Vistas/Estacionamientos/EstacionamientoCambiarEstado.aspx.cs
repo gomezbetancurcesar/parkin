@@ -13,6 +13,10 @@ public partial class EstacionamientoCambiarEstado : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["usuario"] == null){
+            Response.Redirect("~/Vistas/Usuarios/Login.aspx");
+        }
+
         if (!IsPostBack)
         {
             int codEstacionamiento = (int)Session["cod_estacionamiento"];

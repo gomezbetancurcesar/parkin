@@ -10,6 +10,10 @@ public partial class Estacionamientos : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["usuario"] == null){
+            Response.Redirect("~/Vistas/Usuarios/Login.aspx");
+        }
+
         if (!IsPostBack)
         {
             gv_estacionamientos.DataSource = new Estacionamiento().buscarTodos(0, true);
