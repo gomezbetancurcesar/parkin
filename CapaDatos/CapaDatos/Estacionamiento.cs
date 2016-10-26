@@ -37,8 +37,16 @@ namespace CapaDatos
                 estacionamiento.direccion = dr["direccion"].ToString();
                 estacionamiento.valor_hora = int.Parse(dr["valor_hora"].ToString()); ;
                 estacionamiento.coordenadas = dr["coordenadas"].ToString();
-                estacionamiento.inicio_disponibilidad= new DateTime();
-                estacionamiento.fin_disponibilidad = new DateTime();
+                if (dr["inicio_disponibilidad"].ToString().Equals("")){
+                    estacionamiento.inicio_disponibilidad = new DateTime();
+                }else{
+                    estacionamiento.inicio_disponibilidad = Convert.ToDateTime(dr["inicio_disponibilidad"].ToString());
+                }
+                if (dr["fin_disponibilidad"].ToString().Equals("")){
+                    estacionamiento.fin_disponibilidad = new DateTime();
+                }else{
+                    estacionamiento.fin_disponibilidad = Convert.ToDateTime(dr["fin_disponibilidad"].ToString());
+                }
                 estacionamiento.capacidad = int.Parse(dr["capacidad"].ToString());
                 estacionamiento.existencias = int.Parse(dr["existencias"].ToString());
                 estacionamiento.cod_usuario=int.Parse(dr["cod_usuario"].ToString());
@@ -109,8 +117,16 @@ namespace CapaDatos
                 estacionamiento.direccion = dr["direccion"].ToString();
                 estacionamiento.valor_hora = int.Parse(dr["valor_hora"].ToString()); ;
                 estacionamiento.coordenadas = dr["coordenadas"].ToString();
-                estacionamiento.inicio_disponibilidad = new DateTime();
-                estacionamiento.fin_disponibilidad = new DateTime();
+                if (dr["inicio_disponibilidad"].ToString().Equals("")){
+                    estacionamiento.inicio_disponibilidad = new DateTime();
+                }else{
+                    estacionamiento.inicio_disponibilidad = Convert.ToDateTime(dr["inicio_disponibilidad"].ToString());
+                }
+                if (dr["fin_disponibilidad"].ToString().Equals("")){
+                    estacionamiento.fin_disponibilidad = new DateTime();
+                }else{
+                    estacionamiento.fin_disponibilidad = Convert.ToDateTime(dr["fin_disponibilidad"].ToString());
+                }
                 estacionamiento.capacidad = int.Parse(dr["capacidad"].ToString());
                 estacionamiento.existencias = int.Parse(dr["existencias"].ToString());
                 estacionamiento.cod_usuario = int.Parse(dr["cod_usuario"].ToString());
@@ -157,12 +173,21 @@ namespace CapaDatos
             OracleDataReader dr = conexion.consultar(query);
             while(dr.Read()){
                 Estacionamiento estacionamiento = new Estacionamiento();
+
                 estacionamiento.cod_estacionamiento = int.Parse(dr["cod_estacionamiento"].ToString());
                 estacionamiento.direccion = dr["direccion"].ToString();
                 estacionamiento.valor_hora = int.Parse(dr["valor_hora"].ToString()); ;
                 estacionamiento.coordenadas = dr["coordenadas"].ToString();
-                estacionamiento.inicio_disponibilidad = new DateTime();
-                estacionamiento.fin_disponibilidad = new DateTime();
+                if (dr["inicio_disponibilidad"].ToString().Equals("")){
+                    estacionamiento.inicio_disponibilidad = new DateTime();
+                }else{
+                    estacionamiento.inicio_disponibilidad = Convert.ToDateTime(dr["inicio_disponibilidad"].ToString());
+                }
+                if (dr["fin_disponibilidad"].ToString().Equals("")){
+                    estacionamiento.fin_disponibilidad = new DateTime();
+                }else{
+                    estacionamiento.fin_disponibilidad = Convert.ToDateTime(dr["fin_disponibilidad"].ToString());
+                }
                 estacionamiento.capacidad = int.Parse(dr["capacidad"].ToString());
                 estacionamiento.existencias = int.Parse(dr["existencias"].ToString());
                 estacionamiento.cod_usuario = int.Parse(dr["cod_usuario"].ToString());

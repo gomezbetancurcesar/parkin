@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Security.Cryptography;
 using Oracle.DataAccess.Client;
 
 namespace CapaDatos
@@ -46,7 +47,7 @@ namespace CapaDatos
             }catch(Exception e){ }
             
             Conexion conexion = new Conexion();
-            string query = "select * from usuarios where rut='" + rutSinDV + "' and password='" + password + "'";
+            string query = "select * from usuarios where rut='" + rutSinDV + "' and password='" + this.encriptarMD5(password) + "'";
 
             OracleDataReader dr = conexion.consultar(query);
             if (dr.Read())
@@ -86,7 +87,7 @@ namespace CapaDatos
             query += "'" + usuario.apellido_mat + "',";
             query += " DATE '" + usuario.fecha_nacimiento.Date.ToString("yyyy-MM-dd") + "',";
             query += "'" + usuario.sexo + "',";
-            query += "'" + usuario.password + "',";
+            query += "'" + this.encriptarMD5(usuario.password) + "',";
             query += "'" + usuario.direccion + "',";
             query += "'" + usuario.telefono + "',";
             query += "'" + usuario.email + "',";
@@ -104,6 +105,25 @@ namespace CapaDatos
             {
                 return -1;
             }
+        }
+
+        private string encriptarMD5(string cadena)
+        {
+            MD5 md5Hash = MD5.Create();
+            //ASCIIEncoding encoding = new ASCIIEncoding();
+            UTF8Encoding encoding = new UTF8Encoding();
+
+            byte[] data = md5Hash.ComputeHash(encoding.GetBytes(cadena));
+            StringBuilder sBuilder = new StringBuilder();
+            for (int i = 0; i < data.Length; i++)
+            {
+                sBuilder.Append(data[i].ToString("x2"));
+            }
+
+            Console.WriteLine("The MD5 hash of " + cadena + " is: " + sBuilder.ToString() + ".");
+
+            // Return the hexadecimal string.
+            return sBuilder.ToString();
         }
 
         /*

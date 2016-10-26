@@ -23,7 +23,6 @@
                         lat: position.coords.latitude,
                         lng: position.coords.longitude
                     };
-
                     infoWindow.setPosition(pos);
                     infoWindow.setContent('Te encontre!.');
                     map.setCenter(pos);
@@ -73,11 +72,41 @@
             </div>
         </div>
         <div id="divDatosEstacionamiento" runat="server" visible="false" class="col-md-12 row form-group">
-            <div class="col-md-6">
-                <asp:Label ID="Label10" runat="server" Text="Detalle Estacionamiento"></asp:Label>
-            </div>
-            <div class="col-md-6">
-            </div>
+            <%
+                if (Session["estacionamiento"] != null)
+                {
+                    Estacionamiento estacionamiento = (Estacionamiento)Session["estacionamiento"];
+                    %>
+                    <div class="col-md-12 form-group">
+                        <asp:Label ID="Label10" runat="server" Text="Detalle Estacionamiento"></asp:Label>
+                    </div>
+                    <div class="col-md-12 row">
+                        <div class="col-md-3">Dirección</div>
+                        <div class="col-md-9">
+                            <% Response.Write(estacionamiento.direccion); %>
+                        </div>
+                        <div class="col-md-3">Valor Hora</div>
+                        <div class="col-md-9">
+                            <% Response.Write(estacionamiento.valor_hora); %>
+                        </div>
+                        <div class="col-md-3">Disponibilad</div>
+                        <div class="col-md-9">
+                            Disponibilad
+                        </div>
+                        <div class="col-md-3">Cupos</div>
+                        <div class="col-md-9">
+                            <% Response.Write(estacionamiento.capacidad - estacionamiento.existencias); %>
+                        </div>
+                        <div class="col-md-3">Horario</div>
+                        <div class="col-md-9">
+                            <% Response.Write(estacionamiento.inicio_disponibilidad.ToString("HH:mm")); %>
+                            -
+                            <% Response.Write(estacionamiento.fin_disponibilidad.ToString("HH:mm")); %>
+                        </div>
+                    </div>
+                    <%
+                }
+            %>
         </div>
         <div class="col-md-12 row form-group">
             <div class="col-md-6">
@@ -100,8 +129,8 @@
                     AutoPostBack="true"
                     runat="server" OnSelectedIndexChanged="dpd_tipo_disponibilidad_SelectedIndexChanged">
                     <asp:ListItem Value="0">Seleccione</asp:ListItem>
-                    <asp:ListItem Value="1">Arrendar por horas</asp:ListItem>
-                    <asp:ListItem Value="2">Arrendar según fecha</asp:ListItem>
+                    <asp:ListItem Value="1">Arrendar por Horas</asp:ListItem>
+                    <asp:ListItem Value="2">Arrendar según Horario</asp:ListItem>
                 </asp:DropDownList>
             </div>
             <div class="col-md-6">
@@ -147,7 +176,7 @@
             <asp:Button
                 ID="Button1" 
                 runat="server" 
-                Text="Modificar" 
+                Text="Arrendar" 
                 CssClass="btn btn-sm btn-primary btn-block"
                 />
         </div>
