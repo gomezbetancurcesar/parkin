@@ -112,17 +112,11 @@ namespace CapaDatos
             MD5 md5Hash = MD5.Create();
             //ASCIIEncoding encoding = new ASCIIEncoding();
             UTF8Encoding encoding = new UTF8Encoding();
-
             byte[] data = md5Hash.ComputeHash(encoding.GetBytes(cadena));
             StringBuilder sBuilder = new StringBuilder();
-            for (int i = 0; i < data.Length; i++)
-            {
+            for (int i = 0; i < data.Length; i++){
                 sBuilder.Append(data[i].ToString("x2"));
             }
-
-            Console.WriteLine("The MD5 hash of " + cadena + " is: " + sBuilder.ToString() + ".");
-
-            // Return the hexadecimal string.
             return sBuilder.ToString();
         }
 

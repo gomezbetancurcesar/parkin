@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <asp:HyperLink ID="HyperLink4" runat="server" NavigateUrl="~/EstacionamientoAgregar.aspx">Agregar Estacionamiento</asp:HyperLink>
+    <asp:HyperLink ID="HyperLink4" runat="server" NavigateUrl="~/Vistas/Estacionamientos/EstacionamientoAgregar.aspx">Agregar Estacionamiento</asp:HyperLink>
     <asp:GridView ID="gv_estacionamientos" runat="server" AutoGenerateColumns="False" OnRowCommand="gv_estacionamientos_RowCommand" CssClass="table table-hover table-bordered" DataKeyNames="cod_estacionamiento">
         <Columns>
             <asp:BoundField AccessibleHeaderText="ColCod" DataField="cod_estacionamiento" HeaderText="Codigo" Visible="false" />

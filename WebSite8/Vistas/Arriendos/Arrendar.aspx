@@ -17,7 +17,7 @@
             var infoWindow = new google.maps.InfoWindow({ map: map });
 
             // Try HTML5 geolocation.
-            if (navigator.geolocation) {
+            if (navigator.geolocation){
                 navigator.geolocation.getCurrentPosition(function (position) {
                     var pos = {
                         lat: position.coords.latitude,
@@ -89,9 +89,9 @@
                         <div class="col-md-9">
                             <% Response.Write(estacionamiento.valor_hora); %>
                         </div>
-                        <div class="col-md-3">Disponibilad</div>
+                        <div class="col-md-3">Disponibilidad</div>
                         <div class="col-md-9">
-                            Disponibilad
+                            <% Response.Write(estacionamiento.EstacionamientoEstado.nombre_estacionamiento_estado); %>
                         </div>
                         <div class="col-md-3">Cupos</div>
                         <div class="col-md-9">

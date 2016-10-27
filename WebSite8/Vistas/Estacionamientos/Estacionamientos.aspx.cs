@@ -25,13 +25,19 @@ public partial class Estacionamientos : System.Web.UI.Page
         int rowIndex = Convert.ToInt32(e.CommandArgument);
         GridViewRow row = gv_estacionamientos.Rows[rowIndex];
         int codigoEstacionamiento = (int)gv_estacionamientos.DataKeys[rowIndex].Value;
-
-        //ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('codigo Estacionamiento: " + codigoEstacionamiento + "');", true);
         Session["cod_estacionamiento"] = codigoEstacionamiento;
 
-        if (e.CommandName.Equals("CambiarEstado"))
+        switch (e.CommandName)
         {
-            Response.Redirect("EstacionamientoCambiarEstado.aspx");
+            case "CambiarEstado":
+                Response.Redirect("~/Vistas/Estacionamientos/EstacionamientoCambiarEstado.aspx");
+                break;
+            case "Editar":
+                Response.Redirect("~/Vistas/Estacionamientos/EstacionamientoEditar.aspx");
+                break;
+            case "Eliminar":
+                //Response.Redirect("~/Vistas/Estacionamientos/EstacionamientoEliminar.aspx");
+                break;
         }
     }
 }

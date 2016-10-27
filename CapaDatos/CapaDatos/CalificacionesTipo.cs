@@ -11,6 +11,6 @@ namespace CapaDatos
     {
         public int cod_calificacion_tipo { get; set; }
         public string nombre_calificacion_tipo { get; set; }
-        //public List<Calificaciones> calificaciones { get; set; }
+        public List<Calificacion> calificaciones { get; set; }
     }
 }

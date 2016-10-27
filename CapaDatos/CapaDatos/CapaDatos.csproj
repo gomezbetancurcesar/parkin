@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Arriendo.cs" />
     <Compile Include="Banco.cs" />
+    <Compile Include="Calificacion.cs" />
     <Compile Include="CalificacionesTipo.cs" />
     <Compile Include="Comuna.cs" />
     <Compile Include="Conexion.cs" />

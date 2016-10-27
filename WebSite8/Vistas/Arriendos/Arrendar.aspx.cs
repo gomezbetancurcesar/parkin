@@ -69,7 +69,7 @@ public partial class Arrendar : System.Web.UI.Page
         if (!estacionamientoSeleccionado.Equals("") || !estacionamientoSeleccionado.Equals("0"))
         {
             divDatosEstacionamiento.Visible = true;
-            Session["estacionamiento"] = new Estacionamiento().buscarPorPk(Int32.Parse(estacionamientoSeleccionado));
+            Session["estacionamiento"] = new Estacionamiento().buscarPorPk(Int32.Parse(estacionamientoSeleccionado), true);
         }
         else
         {

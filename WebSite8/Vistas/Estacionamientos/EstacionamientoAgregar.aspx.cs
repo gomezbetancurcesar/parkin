@@ -26,7 +26,8 @@ public partial class EstacionamientoAgregar : System.Web.UI.Page
         estacionamiento.existencias = 0;
         estacionamiento.cod_estacionamiento_estado = 1;
         estacionamiento.cod_usuario = usuarioLogeado.cod_usuario;
-        estacionamiento.coordenadas = "";
+        estacionamiento.latitud = 0;
+        estacionamiento.longitud = 0;
 
         if (estacionamiento.guardar(estacionamiento) > 0)
         {

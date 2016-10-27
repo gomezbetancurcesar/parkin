@@ -12,7 +12,8 @@ namespace CapaDatos
         public int cod_estacionamiento { get; set; }
         public string direccion { get; set; }
         public int valor_hora { get; set; }
-        public string coordenadas { get; set; }
+        public int latitud { get; set; }
+        public int longitud { get; set; }
         public DateTime inicio_disponibilidad { get; set; }
         public DateTime fin_disponibilidad { get; set; }
         public int capacidad { get; set; }
@@ -35,8 +36,13 @@ namespace CapaDatos
                 Estacionamiento estacionamiento = new Estacionamiento();
                 estacionamiento.cod_estacionamiento = int.Parse(dr["cod_estacionamiento"].ToString());
                 estacionamiento.direccion = dr["direccion"].ToString();
-                estacionamiento.valor_hora = int.Parse(dr["valor_hora"].ToString()); ;
-                estacionamiento.coordenadas = dr["coordenadas"].ToString();
+                estacionamiento.valor_hora = int.Parse(dr["valor_hora"].ToString());
+                if (!string.IsNullOrEmpty(dr["latitud"].ToString())){
+                    estacionamiento.latitud = Int32.Parse(dr["latitud"].ToString());
+                }
+                if (!string.IsNullOrEmpty(dr["longitud"].ToString())){
+                    estacionamiento.longitud = Int32.Parse(dr["longitud"].ToString());
+                }
                 if (dr["inicio_disponibilidad"].ToString().Equals("")){
                     estacionamiento.inicio_disponibilidad = new DateTime();
                 }else{
@@ -68,11 +74,12 @@ namespace CapaDatos
             int id = conexion.getSequenceValor("ESTACIONAMIENTOS_SEQ", 1);
             conexion.cerrarConexion();
 
-            string query = "insert into ESTACIONAMIENTOS(COD_ESTACIONAMIENTO, DIRECCION, VALOR_HORA, COORDENADAS,INICIO_DISPONIBILIDAD,FIN_DISPONIBILIDAD,CAPACIDAD,EXISTENCIAS,COD_USUARIO,COD_ESTACIONAMIENTO_ESTADO) values (";
+            string query = "insert into ESTACIONAMIENTOS(COD_ESTACIONAMIENTO, DIRECCION, VALOR_HORA, LATITUD, LONGITUD,INICIO_DISPONIBILIDAD,FIN_DISPONIBILIDAD,CAPACIDAD,EXISTENCIAS,COD_USUARIO,COD_ESTACIONAMIENTO_ESTADO) values (";
             query += id + ",";
             query += "'" + estacionamiento.direccion + "',";
             query += estacionamiento.valor_hora + ",";
-            query += "'" + estacionamiento.coordenadas + "',";
+            query += estacionamiento.latitud + ",";
+            query += estacionamiento.longitud + ",";
             if (estacionamiento.inicio_disponibilidad != default(DateTime))
             {
                 query += " DATE '" + estacionamiento.inicio_disponibilidad.Date.ToString("yyyy-MM-dd H:mm:ss") + "',";
@@ -104,7 +111,7 @@ namespace CapaDatos
             }
         }
 
-        public Estacionamiento buscarPorPk(int codEstacionamiento)
+        public Estacionamiento buscarPorPk(int codEstacionamiento, Boolean incluirAsocc = false)
         {
             Estacionamiento estacionamiento = new Estacionamiento();
             Conexion conexion = new Conexion();
@@ -115,8 +122,15 @@ namespace CapaDatos
             {
                 estacionamiento.cod_estacionamiento = int.Parse(dr["cod_estacionamiento"].ToString());
                 estacionamiento.direccion = dr["direccion"].ToString();
-                estacionamiento.valor_hora = int.Parse(dr["valor_hora"].ToString()); ;
-                estacionamiento.coordenadas = dr["coordenadas"].ToString();
+                estacionamiento.valor_hora = int.Parse(dr["valor_hora"].ToString());
+
+                if (!string.IsNullOrEmpty(dr["latitud"].ToString())){
+                    estacionamiento.latitud = Int32.Parse(dr["latitud"].ToString());
+                }
+                if (!string.IsNullOrEmpty(dr["longitud"].ToString())){
+                    estacionamiento.longitud = Int32.Parse(dr["longitud"].ToString());
+                }
+
                 if (dr["inicio_disponibilidad"].ToString().Equals("")){
                     estacionamiento.inicio_disponibilidad = new DateTime();
                 }else{
@@ -131,6 +145,11 @@ namespace CapaDatos
                 estacionamiento.existencias = int.Parse(dr["existencias"].ToString());
                 estacionamiento.cod_usuario = int.Parse(dr["cod_usuario"].ToString());
                 estacionamiento.cod_estacionamiento_estado = int.Parse(dr["cod_estacionamiento_estado"].ToString());
+
+                if (incluirAsocc)
+                {
+                    estacionamiento.EstacionamientoEstado = new EstacionamientoEstado().buscarPorPk(estacionamiento.cod_estacionamiento_estado);
+                }
             }
             conexion.cerrarConexion();
 
@@ -145,9 +164,10 @@ namespace CapaDatos
             string query = "update ESTACIONAMIENTOS set";
             query += " COD_ESTACIONAMIENTO = " + estacionamiento.cod_estacionamiento;
 
-            //string query = "insert into ESTACIONAMIENTOS(COD_ESTACIONAMIENTO, DIRECCION, VALOR_HORA, COORDENADAS,INICIO_DISPONIBILIDAD,FIN_DISPONIBILIDAD,CAPACIDAD,EXISTENCIAS,COD_USUARIO,COD_ESTACIONAMIENTO_ESTADO) values (";
             if (!estacionamiento.cod_estacionamiento_estado.Equals(0)) { query += ",COD_ESTACIONAMIENTO_ESTADO = " + estacionamiento.cod_estacionamiento_estado; }
             if (!string.IsNullOrEmpty(estacionamiento.direccion)) { query += ",DIRECCION = " + estacionamiento.direccion; }
+            if (!estacionamiento.latitud.Equals(0)) { query += ",LATITUD = " + estacionamiento.latitud; }
+            if (!estacionamiento.longitud.Equals(0)) { query += ",LONGITUD = " + estacionamiento.longitud; }
             if (!estacionamiento.valor_hora.Equals(0)) { query += ",VALOR_HORA = " + estacionamiento.valor_hora; }
             if (!estacionamiento.capacidad.Equals(0)) { query += ",CAPACIDAD = " + estacionamiento.capacidad; }
             if (!estacionamiento.existencias.Equals(0)) { query += ",EXISTENCIAS = " + estacionamiento.existencias; }
@@ -176,8 +196,14 @@ namespace CapaDatos
 
                 estacionamiento.cod_estacionamiento = int.Parse(dr["cod_estacionamiento"].ToString());
                 estacionamiento.direccion = dr["direccion"].ToString();
-                estacionamiento.valor_hora = int.Parse(dr["valor_hora"].ToString()); ;
-                estacionamiento.coordenadas = dr["coordenadas"].ToString();
+                estacionamiento.valor_hora = int.Parse(dr["valor_hora"].ToString());
+                if (!string.IsNullOrEmpty(dr["latitud"].ToString())){
+                    estacionamiento.latitud = Int32.Parse(dr["latitud"].ToString());
+                }
+                if (!string.IsNullOrEmpty(dr["longitud"].ToString())){
+                    estacionamiento.longitud = Int32.Parse(dr["longitud"].ToString());
+                }
+
                 if (dr["inicio_disponibilidad"].ToString().Equals("")){
                     estacionamiento.inicio_disponibilidad = new DateTime();
                 }else{

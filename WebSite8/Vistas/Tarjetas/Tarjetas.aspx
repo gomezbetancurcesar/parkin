@@ -3,12 +3,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/TarjetaAgregar.aspx">Agregar Tarjeta</asp:HyperLink>
+    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Vistas/Tarjetas/TarjetaAgregar.aspx">Agregar Tarjeta</asp:HyperLink>
     
     <asp:GridView ID="gv_tarjetas" runat="server" AutoGenerateColumns="False" CssClass="table table-hover table-bordered">
         <Columns>
             <asp:BoundField AccessibleHeaderText="ColNroTarjeta" DataField="numero_tarjeta" HeaderText="Número Tarjeta" />
-            <asp:BoundField AccessibleHeaderText="ColExpiracion" DataField="expiracion" HeaderText="Expiración" />
             <asp:ButtonField 
                 AccessibleHeaderText="ColEditar" 
                 ButtonType="Button" 

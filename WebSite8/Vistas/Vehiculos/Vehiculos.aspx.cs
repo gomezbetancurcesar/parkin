@@ -21,4 +21,22 @@ public partial class Vehiculos : System.Web.UI.Page
             gv_vehiculos.DataBind();
         }
     }
+
+    protected void gv_vehiculos_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        int rowIndex = Convert.ToInt32(e.CommandArgument);
+        GridViewRow row = gv_vehiculos.Rows[rowIndex];
+        int codigoVehiculo = (int)gv_vehiculos.DataKeys[rowIndex].Value;
+        Session["cod_vehiculo"] = codigoVehiculo;
+
+        switch (e.CommandName)
+        {
+            case "Editar":
+                Response.Redirect("~/Vistas/Vehiculos/VehiculoEditar.aspx");
+                break;
+            case "Eliminar":
+                //Response.Redirect("~/Vistas/Estacionamientos/EstacionamientoEliminar.aspx");
+                break;
+        }
+    }
 }

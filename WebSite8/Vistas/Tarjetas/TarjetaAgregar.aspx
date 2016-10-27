@@ -44,32 +44,6 @@
             </div>
             <div class="col-md-6"></div>
         </div>
-        <div class="col-md-12 row">
-            <div class="col-md-6 form-group">
-                <asp:Label ID="Label3" runat="server" Text="Fecha Expiracion"></asp:Label>
-                <asp:TextBox 
-                    ID="txt_fec_exp" 
-                    runat="server" 
-                    CssClass="form-control input-sm">
-                </asp:TextBox>
-            </div>
-            <div class="col-md-6">
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txt_fec_exp" ErrorMessage="Ingrese Fecha de Expiracion"></asp:RequiredFieldValidator>
-            </div>
-        </div>
-        <div class="col-md-12 row">
-            <div class="col-md-6 form-group">
-                <asp:Label ID="Label4" runat="server" Text="CVV"></asp:Label>
-                <asp:TextBox 
-                    ID="txt_cvv" 
-                    runat="server" 
-                    CssClass="form-control input-sm">
-                </asp:TextBox>
-            </div>
-            <div class="col-md-6">
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txt_cvv" ErrorMessage="Debe ingresar CVV"></asp:RequiredFieldValidator>
-            </div>
-        </div>
         <div class="col-md-6 form-group">
             <asp:Button
                 ID="btn_agregar" 

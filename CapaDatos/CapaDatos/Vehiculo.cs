@@ -15,6 +15,7 @@ namespace CapaDatos
         public int estado { get; set; }
         public int cod_usuario { get; set; }
         public int cod_vehiculo_marca { get; set; }
+        public VehiculoMarca vehiculoMarca { get; set; }
 
         public int guardar(Vehiculo vehiculo)
         {
@@ -89,6 +90,25 @@ namespace CapaDatos
                 vehiculos.Insert(0, new Vehiculo { cod_vehiculo = 0, patente = "Seleccione"});
             }
             return vehiculos;
+        }
+
+        public Vehiculo buscarPorPK(int codVehiculo)
+        {
+            Vehiculo vehiculo = new Vehiculo();
+            Conexion conexion = new Conexion();
+            string query = "select * from VEHICULOS where cod_vehiculo=" + codVehiculo;
+
+            OracleDataReader dr = conexion.consultar(query);
+            if (dr.Read())
+            {
+                vehiculo.cod_vehiculo = Int32.Parse(dr["cod_vehiculo"].ToString());
+                vehiculo.patente = dr["patente"].ToString();
+                vehiculo.modelo = dr["modelo"].ToString();
+                vehiculo.estado = Int32.Parse(dr["estado"].ToString());
+                vehiculo.cod_usuario = Int32.Parse(dr["cod_usuario"].ToString());
+                vehiculo.cod_vehiculo_marca = Int32.Parse(dr["cod_vehiculo_marca"].ToString());
+            }
+            return vehiculo;
         }
     }
 }

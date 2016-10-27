@@ -54,8 +54,6 @@ public partial class TarjetaAgregar : System.Web.UI.Page
 
             tarjeta.numero_tarjeta = txt_nro_tarjeta.Text;
             tarjeta.saldo = 100000;
-            tarjeta.expiracion = txt_fec_exp.Text;
-            tarjeta.cvv = txt_cvv.Text;
             tarjeta.cod_banco = Int32.Parse(dpd_banco.SelectedValue);
             tarjeta.cod_tarjeta_tipo = Int32.Parse(dpd_tipo_tarjeta.SelectedValue);
             tarjeta.cod_usuario = usuario.cod_usuario;
